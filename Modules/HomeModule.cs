@@ -15,7 +15,7 @@ namespace Shoes
 
       Get["/stores"] = _ => {
       List<Store> AllStores = Store.GetAll();
-      return View["students.cshtml", AllStores];
+      return View["stores.cshtml", AllStores];
       };
 
       Get["/brands"] = _ => {
@@ -27,12 +27,13 @@ namespace Shoes
       Dictionary<string, object> model = new Dictionary<string, object>();
       Brand Selectedbrand = Brand.Find(parameters.id);
       List<Store> allStores = Store.GetAll();
-      List<Store> BrandStores = selectedBrand.GetStudents();
+      List<Store> BrandStores = Selectedbrand.GetStores();
       model.Add("brand", Selectedbrand);
       model.Add("allstores", allStores);
       model.Add("brandstore", BrandStores);
       return View["brand.cshtml", model];
       };
+
       Get["/store/{id}"] = parameters => {
       Dictionary<string, object> model = new Dictionary<string, object>();
       Store SelectedStore = Store.Find(parameters.id);
@@ -44,27 +45,34 @@ namespace Shoes
       return View["store.cshtml", model];
       };
 //
-//       Post["class/add_student"] = _ => {
-//       Class selectedClass = Class.Find(Request.Form["class-id"]);
-//       Student student = Student.Find(Request.Form["student-id"]);
-//       selectedClass.AddStudent(student);
-//       List<Class> AllClasses = Class.GetAll();
-//       return View["classes.cshtml", AllClasses];
-//     };
+      Post["brand/add_student"] = _ => {
+      Brand selectedBrand = Brand.Find(Request.Form["brand-id"]);
+      Store store = Store.Find(Request.Form["store-id"]);
+      selectedBrand.AddStore(store);
+      List<Brand> Allbrands = Brand.GetAll();
+      return View["brands.cshtml", Allbrands];
+    };
+      Post["store/add_brand"] = _ => {
+      Store selectedStore = Store.Find(Request.Form["store-id"]);
+      Brand brand = Brand.Find(Request.Form["brand-id"]);
+      selectedStore.AddBrand(brand);
+      List<Store> AllStores = Store.GetAll();
+      return View["stores.cshtml", AllStores];
+      };
+      
+      Post["/stores"] = _ => {
+      Store newStore = new Store(Request.Form["store-name"]);
+      newStore.Save();
+      List<Store> AllStores = Store.GetAll();
+      return View["stores.cshtml", AllStores];
+      };
 //
-//       Post["/students"] = _ => {
-//       Student newStudent = new Student(Request.Form["student_name"], Request.Form["student_enrollment"]);
-//       newStudent.Save();
-//       List<Student> AllStudents = Student.GetAll();
-//       return View["students.cshtml", AllStudents];
-//       };
-//
-//       Post["/classes"] = _ => {
-//       Class newClass = new Class(Request.Form["class_name"], Request.Form["class_code"]);
-//       newClass.Save();
-//       List<Class> AllClasses = Class.GetAll();
-//       return View["classes.cshtml", AllClasses];
-//       };
+      Post["/brands"] = _ => {
+      Brand newBrand = new Brand(Request.Form["brand-name"]);
+      newBrand.Save();
+      List<Brand> Allbrands = Brand.GetAll();
+      return View["brands.cshtml", Allbrands];
+      };
     }
   }
 }

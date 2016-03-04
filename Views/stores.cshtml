@@ -3,7 +3,7 @@
 <ul>
 @{ if (Model.Count != null) {
   @foreach (var store in Model) {
-     <li>@store.GetName()</li>
+     <li><a href="/store/@store.GetId()">@store.GetName()</a></li>
     }
   }
 }

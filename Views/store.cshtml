@@ -1,23 +1,23 @@
-<h2>Brands associated with@Model["brand"].GetName()</h2>
+<h2>Here are the brands associated with the store @Model["store"].GetName() !</h2>
 
 <ul>
-  @{ if (Model["brandstore"].Count != 0) {
-    @foreach (var store in Model["brandstore"]){
-      <li>@store.GetName()</li>
+  @{ if (Model["storebrand"].Count != 0) {
+    @foreach (var brand in Model["storebrand"]){
+      <li>@brand.GetName()</li>
     }
   }
 }
 
 </ul>
 
-<h4>Add a store to this brand!:</h4>
-<form action='/brand/add_store' method='post'>
-  <input id='brand-id' name='brand-id' type='hidden' value='@Model["brand"].GetId()'>
-  <label for='store-id'>Select a store</label>
-  <select id='store-id' name='store-id' type='text'>
-    @foreach (var store in @Model["allstores"])
+<h4>Add a Brand to this Store!:</h4>
+<form action='/store/add_brand' method='post'>
+  <input id='store-id' name='store-id' type='hidden' value='@Model["store"].GetId()'>
+  <label for='brand-id'>Select a store</label>
+  <select id='brand-id' name='brand-id' type='text'>
+    @foreach (var brand in @Model["allbrands"])
     {
-      <option value='@store.GetId()'>@store.GetName()</option>
+      <option value='@brand.GetId()'>@brand.GetName()</option>
     }
   </select>
   <button type='submit'>Add</button>
@@ -25,4 +25,4 @@
 
 
 
-<a href="/brands">Back</a>
+<a href="/stores">Back</a>
