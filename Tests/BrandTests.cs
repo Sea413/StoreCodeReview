@@ -24,8 +24,8 @@ namespace Shoes
     [Fact]
     public void Test_BrandReturnTrueForSameName()
     {
-      Brand firstBrand = new Class("Aisa");
-      Brand secondBrand = new Class("Aisa");
+      Brand firstBrand = new Brand("Aisa");
+      Brand secondBrand = new Brand("Aisa");
       Assert.Equal(firstBrand, secondBrand);
     }
 
@@ -34,7 +34,7 @@ namespace Shoes
     public void Test_Save_SavesBrandToDatabase()
     {
       //Arrange
-      Brand testBrand = new Class("Aletheia");
+      Brand testBrand = new Brand("Aletheia");
       testBrand.Save();
 
       //Act
@@ -83,8 +83,8 @@ namespace Shoes
           Brand testBrand = new Brand("Orion");
           testBrand.Save();
 
-          Store testStore = new Student("Talos Boots");
-          testBrand.Save();
+          Store testStore = new Store("Talos Boots");
+          testStore.Save();
 
           Store testStore2 = new Store("Geryon Sandals");
           testStore2.Save();
@@ -93,7 +93,7 @@ namespace Shoes
           testBrand.AddStore(testStore);
           testBrand.AddStore(testStore2);;
 
-          List<Store> result = testBrand.GetStudents();
+          List<Store> result = testBrand.GetStores();
           List<Store> testList = new List<Store>{testStore, testStore2};
 
           //Assert
@@ -105,7 +105,7 @@ namespace Shoes
         {
           //Arrange
           Brand testBrand = new Brand("Agon");
-          testClass.Save();
+          testBrand.Save();
 
           Store testStore1 = new Store("Alke Sleek Slippers");
           testStore1.Save();
@@ -119,7 +119,7 @@ namespace Shoes
           List<Store> testList = new List<Store> {testStore1};
 
           //Assert
-          Assert.Equal(testList, savedStudents);
+          Assert.Equal(testList, savedStore);
         }
       public void Test_Getbrands_ReturnsAllStorebrands()
       {

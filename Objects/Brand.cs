@@ -43,7 +43,7 @@ namespace Shoes
       _name = newName;
     }
 
-    public void AddStore(Student newStore)
+    public void AddStore(Store newStore)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
@@ -54,9 +54,9 @@ namespace Shoes
       brandIdParameter.Value = this.GetId();
       cmd.Parameters.Add(brandIdParameter);
 
-      SqlParameter brandIdParameter = new SqlParameter();
-      brandIdParameter.ParameterName = "@StoreId";
-      brandIdParameter.Value = newStudent.GetId();
+      SqlParameter StoreIdParameter = new SqlParameter();
+      StoreIdParameter.ParameterName = "@StoreId";
+      StoreIdParameter.Value = newStore.GetId();
       cmd.Parameters.Add(brandIdParameter);
 
       cmd.ExecuteNonQuery();
@@ -81,7 +81,7 @@ namespace Shoes
       {
         int brandId = rdr.GetInt32(0);
         string brandName = rdr.GetString(1);
-        Brand newBrand = new Brand(brandId, brandName);
+        Brand newBrand = new Brand(brandName, brandId);
         allBrands.Add(newBrand);
       }
 
@@ -155,7 +155,7 @@ namespace Shoes
         foundBrandId = rdr.GetInt32(0);
         foundBrandName = rdr.GetString(1);
       }
-      Brand foundBrand = new Class(foundBrandName, foundBrandId);
+      Brand foundBrand = new Brand(foundBrandName, foundBrandId);
 
       if (rdr != null)
       {
@@ -193,17 +193,17 @@ namespace Shoes
       }
 
       List<Store> stores = new List<Store> {};
-      foreach (int storeId in storesIds)
+      foreach (int storeId in storeIds)
       {
         SqlDataReader queryReader = null;
-        SqlCommand studentQuery = new SqlCommand("SELECT * FROM stores WHERE id = @StoreId;", conn);
+        SqlCommand storeQuery = new SqlCommand("SELECT * FROM stores WHERE id = @StoreId;", conn);
 
         SqlParameter storeIdParameter = new SqlParameter();
         storeIdParameter.ParameterName = "@StoreId";
-        storeIdParameter.Value = studentId;
-        studentQuery.Parameters.Add(storeIdParameter);
+        storeIdParameter.Value = storeId;
+        storeQuery.Parameters.Add(storeIdParameter);
 
-        queryReader = studentQuery.ExecuteReader();
+        queryReader = storeQuery.ExecuteReader();
         while(queryReader.Read())
         {
               int thisStoreID = queryReader.GetInt32(0);

@@ -83,46 +83,46 @@ namespace Shoes
     }
 
     [Fact]
-public void Test_AddClass_AddsClassToStudent()
+public void Test_AddBrand_AddsBrandtoStore()
 {
   //Arrange
-  Store testStore = new Store("Adin Moon",new DateTime (2009,10,01));
+  Store testStore = new Store("Soter's Clogs");
   testStore.Save();
 
-  Class testClass = new Class("Seahorse Riding", "SEA2008");
-  testClass.Save();
+  Brand testBrand = new Brand("Polemos");
+  testBrand.Save();
 
   //Act
-  testStudent.AddClass(testClass);
+  testStore.AddBrand(testBrand);
 
-  foreach (var course in Class.GetAll()) {
-        Console.WriteLine(course.GetName());
-  }
+  // foreach (var store in Brand.GetAll()) {
+  //       Console.WriteLine(course.GetName());
+  // }
 
-  List<Class> result = testStudent.GetClasses();
-  List<Class> testList = new List<Class>{testClass};
+  List<Brand> result = testStore.GetBrands();
+  List<Brand> testList = new List<Brand>{testBrand};
 
   //Assert
   Assert.Equal(testList, result);
 }
 
   [Fact]
-  public void Test_GetCategories_ReturnsAllStudentCategories()
+  public void Test_Getbrands_ReturnsAllStorebrands()
   {
     //Arrange
-    Student testStudent = new Student("Zach Quinto",new DateTime (2009,10,01));
-    testStudent.Save();
+    Store testStore = new Store("Charon Boating Shoes");
+    testStore.Save();
 
-    Class testClass1 = new Class("William James", "Phil008");
-    testClass1.Save();
+    Brand testBrand1 = new Brand("Aiakos");
+    testBrand1.Save();
 
-    Class testClass2 = new Class("Zach Quinto", "Phil1009");
-    testClass2.Save();
+    Brand testBrand2 = new Brand("Minos");
+    testBrand2.Save();
 
     //Act
-    testStudent.AddClass(testClass1);
-    List<Class> result = testStudent.GetClasses();
-    List<Class> testList = new List<Class> {testClass1};
+    testStore.AddBrand(testBrand1);
+    List<Brand> result = testStore.GetBrands();
+    List<Brand> testList = new List<Brand> {testBrand1};
 
     //Assert
     Assert.Equal(testList, result);
@@ -131,23 +131,22 @@ public void Test_AddClass_AddsClassToStudent()
   public void Test_Delete_DeletesStudentAssociationsFromDatabase()
   {
     //Arrange
-    Class testClass = new Class("Barrel Slinging", "Gears2001");
-    testClass.Save();
+    Brand testBrand = new Brand("Ceto");
+    testBrand.Save();
 
-    string testDescription = "David Phil";
-    DateTime testcompletion = new DateTime (2009,10,01);
-    Student testStudent = new Student(testDescription, testcompletion);
-    testStudent.Save();
+    string testName = "Aurai Breeze Shoes";
+    Store testStore = new Store(testName);
+    testStore.Save();
 
     //Act
-    testStudent.AddClass(testClass);
-    testStudent.Delete();
+    testStore.AddBrand(testBrand);
+    testStore.Delete();
 
-    List<Student> resultClassStudents = testClass.GetStudents();
-    List<Student> testClassStudents = new List<Student> {};
+    List<Store> resultBrandStore = testBrand.GetStores();
+    List<Store> testbrandStore = new List<Store> {};
 
     //Assert
-    Assert.Equal(testClassStudents, resultClassStudents);
+    Assert.Equal(resultBrandStore, testbrandStore);
   }
 
 
