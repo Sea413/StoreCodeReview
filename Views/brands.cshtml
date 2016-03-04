@@ -1,0 +1,12 @@
+<h1> Brands </h1>
+
+<ul>
+@{ if (Model.Count != null) {
+  @foreach (var brands in Model) {
+     <li><a href="/brand/@brands.GetId()">@brands.GetName()</a></li>
+    }
+  }
+}
+</ul>
+
+<a href="/"> Go Back</a>
