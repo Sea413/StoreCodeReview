@@ -140,7 +140,7 @@ public void Test_AddBrand_AddsBrandtoStore()
 
     //Act
     testStore.AddBrand(testBrand);
-    testStore.Delete();
+    testStore.DeleteStore();
 
     List<Store> resultBrandStore = testBrand.GetStores();
     List<Store> testbrandStore = new List<Store> {};

@@ -154,7 +154,7 @@ namespace Shoes
 
           //Act
           testBrand.AddStore(testStore);
-          testBrand.Delete();
+          testBrand.DeleteBrand();
 
           List<Brand> resultstorebrand = testStore.GetBrands();
           List<Brand> teststoreBrand = new List<Brand> {};
@@ -175,7 +175,7 @@ namespace Shoes
       testBrand2.Save();
 
       //Act
-      testBrand1.Delete();
+      testBrand1.DeleteBrand();
       List<Brand> resultBrand = Brand.GetAll();
       List<Brand> testBrandList = new List<Brand> {testBrand2};
 

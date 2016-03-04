@@ -3,10 +3,11 @@
 <ul>
 @{ if (Model.Count != null) {
   @foreach (var store in Model) {
-     <li><a href="/store/@store.GetId()">@store.GetName()</a></li>
+     <li><a href="/store/@store.GetId()">@store.GetName()</a> <a href="/stores/edit/@store.GetId()"> Edit Store Info</a> </li>
     }
   }
 }
 </ul>
 
 <a href="/"> Go Back</a>
+<a href="/stores/ClearAll">Broker a revolution and throw off the shackles of our capitalist overlords!</a>

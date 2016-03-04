@@ -227,43 +227,43 @@ public static void DeleteAll()
     }
   }
 
-  // public void UpdateChecked(int newChecked)
-  // {
-  //   SqlConnection conn = DB.Connection();
-  //   SqlDataReader rdr;
-  //   conn.Open();
-  //
-  //   SqlCommand cmd = new SqlCommand("UPDATE tasks SET complete = @newchecked OUTPUT INSERTED.complete WHERE id = @TID;", conn);
-  //
-  //   SqlParameter newCheckedParam = new SqlParameter();
-  //   newCheckedParam.ParameterName = "@newChecked";
-  //   newCheckedParam.Value = newChecked;
-  //   cmd.Parameters.Add(newCheckedParam);
-  //
-  //
-  //   SqlParameter taskIDParam = new SqlParameter();
-  //   taskIDParam.ParameterName = "@TID";
-  //   taskIDParam.Value = this.GetId();
-  //   cmd.Parameters.Add(taskIDParam);
-  //   rdr = cmd.ExecuteReader();
-  //
-  //   while(rdr.Read())
-  //   {
-  //     this._completed = rdr.GetInt32(0);
-  //   }
-  //
-  //   if (rdr != null)
-  //   {
-  //     rdr.Close();
-  //   }
-  //
-  //   if (conn != null)
-  //   {
-  //     conn.Close();
-  //   }
-  // }
+  public void UpdateStore(string newName)
+  {
+    SqlConnection conn = DB.Connection();
+    SqlDataReader rdr;
+    conn.Open();
 
-  public void Delete()
+    SqlCommand cmd = new SqlCommand("UPDATE stores SET name = @NewName OUTPUT INSERTED.name WHERE id = @StoreId;", conn);
+
+    SqlParameter newNameParameter = new SqlParameter();
+    newNameParameter.ParameterName = "@NewName";
+    newNameParameter.Value = newName;
+    cmd.Parameters.Add(newNameParameter);
+
+
+    SqlParameter StoreIdParameter = new SqlParameter();
+    StoreIdParameter.ParameterName = "@StoreId";
+    StoreIdParameter.Value = this.GetId();
+    cmd.Parameters.Add(StoreIdParameter);
+    rdr = cmd.ExecuteReader();
+
+    while(rdr.Read())
+    {
+      this._name = rdr.GetString(0);
+    }
+
+    if (rdr != null)
+    {
+      rdr.Close();
+    }
+
+    if (conn != null)
+    {
+      conn.Close();
+    }
+  }
+
+  public void DeleteStore()
   {
     SqlConnection conn = DB.Connection();
     conn.Open();

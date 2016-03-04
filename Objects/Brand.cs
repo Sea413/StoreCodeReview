@@ -222,7 +222,7 @@ namespace Shoes
       }
       return stores;
     }
-    public void Update(string newName)
+    public void UpdateBrand(string newName)
     {
       SqlConnection conn = DB.Connection();
       SqlDataReader rdr;
@@ -257,7 +257,7 @@ namespace Shoes
         conn.Close();
       }
     }
-    public void Delete()
+    public void DeleteBrand()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
