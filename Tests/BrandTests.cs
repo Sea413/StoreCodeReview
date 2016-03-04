@@ -142,6 +142,19 @@ namespace Shoes
       Assert.Equal(testList, result);
     }
     [Fact]
+       public void Test_Updatebrand_UpdatingaBrandName()
+       {
+         Brand newBrand = new Brand("Athena");
+         newBrand.Save();
+         string testBrand = "Key";
+
+         newBrand.UpdateBrand(testBrand);
+         string result = newBrand.GetName();
+
+         Assert.Equal(testBrand, result);
+       }
+
+    [Fact]
         public void Test_Delete_DeletesbrandAssociationsFromDatabase()
         {
           //Arrange

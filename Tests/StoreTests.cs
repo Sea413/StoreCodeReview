@@ -127,6 +127,18 @@ public void Test_AddBrand_AddsBrandtoStore()
     //Assert
     Assert.Equal(testList, result);
   }
+  [Fact]
+     public void Test_Update_UpdatingaStoreName()
+     {
+       Store newStore = new Store("Loki");
+       newStore.Save();
+       string testStore = "Foucault";
+
+       newStore.UpdateStore(testStore);
+       string result = newStore.GetName();
+
+       Assert.Equal(testStore, result);
+     }
 
   public void Test_Delete_DeletesStoreAssociationsFromDatabase()
   {
