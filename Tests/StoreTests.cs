@@ -128,7 +128,7 @@ public void Test_AddBrand_AddsBrandtoStore()
     Assert.Equal(testList, result);
   }
 
-  public void Test_Delete_DeletesStudentAssociationsFromDatabase()
+  public void Test_Delete_DeletesStoreAssociationsFromDatabase()
   {
     //Arrange
     Brand testBrand = new Brand("Ceto");

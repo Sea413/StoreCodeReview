@@ -57,7 +57,7 @@ namespace Shoes
       SqlParameter StoreIdParameter = new SqlParameter();
       StoreIdParameter.ParameterName = "@StoreId";
       StoreIdParameter.Value = newStore.GetId();
-      cmd.Parameters.Add(brandIdParameter);
+      cmd.Parameters.Add(StoreIdParameter);
 
       cmd.ExecuteNonQuery();
 

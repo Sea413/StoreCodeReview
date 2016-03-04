@@ -108,7 +108,7 @@ public List<Brand> GetBrands()
   SqlDataReader rdr = null;
   conn.Open();
 
-  SqlCommand cmd = new SqlCommand("SELECT brand_id FROM storess_brands WHERE store_id = @StoreId;", conn);
+  SqlCommand cmd = new SqlCommand("SELECT brand_id FROM stores_brands WHERE store_id = @StoreId;", conn);
 
   SqlParameter storeIdParameter = new SqlParameter();
   storeIdParameter.ParameterName = "@StoreId";
@@ -134,7 +134,7 @@ public List<Brand> GetBrands()
   foreach (int brand_id in BrandIds)
   {
     SqlDataReader queryReader = null;
-    SqlCommand BrandQuery = new SqlCommand("SELECT * FROM brand WHERE Id = @BrandId;", conn);
+    SqlCommand BrandQuery = new SqlCommand("SELECT * FROM brands WHERE Id = @BrandId;", conn);
 
     SqlParameter BrandIdParameter = new SqlParameter();
     BrandIdParameter.ParameterName = "@BrandId";
