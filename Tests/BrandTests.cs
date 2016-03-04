@@ -121,73 +121,73 @@ namespace Shoes
           //Assert
           Assert.Equal(testList, savedStudents);
         }
-        public void Test_Getbrands_ReturnsAllStorebrands()
-        {
+      public void Test_Getbrands_ReturnsAllStorebrands()
+      {
       //Arrange
-      Student testStudent = new Student("Veronica Alley", new DateTime (2009,10,01));
-      testStudent.Save();
+      Store testStore = new Store("Ate's Vanity");
+      testStore.Save();
 
-      Class testClass1 = new Class("Fiction", "CRWT001");
-      testClass1.Save();
+      Brand testBrand1 = new Brand("Bia");
+      testBrand1.Save();
 
-      Class testClass2 = new Class("Philosophy", "PHIL002");
-      testClass2.Save();
+      Brand testBrand2 = new Brand("Deimos");
+      testBrand2.Save();
 
       //Act
-      testStudent.AddClass(testClass1);
-      List<Class> result = testStudent.GetClasses();
-      List<Class> testList = new List<Class> {testClass1};
+      testStore.AddBrand(testBrand1);
+      List<Brand> result = testStore.GetBrands();
+      List<Brand> testList = new List<Brand> {testBrand1};
 
       //Assert
       Assert.Equal(testList, result);
     }
     [Fact]
-        public void Test_Delete_DeletesClassAssociationsFromDatabase()
+        public void Test_Delete_DeletesbrandAssociationsFromDatabase()
         {
           //Arrange
-          Student testStudent = new Student("Ted Mosley", new DateTime (2009,10,01));
-          testStudent.Save();
+          Store testStore = new Store("Eirene Birkenstocks");
+          testStore.Save();
 
-          string testName = "Ted Mosley";
-          Class testClass = new Class(testName,"Gred1001");
-          testClass.Save();
+          string testName = "Eirene Birkenstocks";
+          Brand testBrand = new Brand(testName);
+          testBrand.Save();
 
           //Act
-          testClass.AddStudent(testStudent);
-          testClass.Delete();
+          testBrand.AddStore(testStore);
+          testBrand.Delete();
 
-          List<Class> resultStudentClasses = testStudent.GetClasses();
-          List<Class> testStudentClasses = new List<Class> {};
+          List<Brand> resultstorebrand = testStore.GetBrands();
+          List<Brand> teststoreBrand = new List<Brand> {};
 
           //Assert
-          Assert.Equal(testStudentClasses, resultStudentClasses);
+          Assert.Equal(teststoreBrand, resultstorebrand);
         }
     [Fact]
-    public void Test_Delete_DeletesClassFromDatabase()
+    public void Test_Delete_DeletesbrandFromDatabase()
     {
       //Arrange
-      string name1 = "Buddhism";
-      Class testClass1 = new Class(name1, "Gred1001");
-      testClass1.Save();
+      string name1 = "Penia";
+      Brand testBrand1 = new Brand(name1);
+      testBrand1.Save();
 
-      string name2 = "Basket Weaving";
-      Class testClass2 = new Class(name2,"Gred1001");
-      testClass2.Save();
+      string name2 = "Thrasos";
+      Brand testBrand2 = new Brand(name2);
+      testBrand2.Save();
 
       //Act
-      testClass1.Delete();
-      List<Class> resultClasses = Class.GetAll();
-      List<Class> testClassList = new List<Class> {testClass2};
+      testBrand1.Delete();
+      List<Brand> resultBrand = Brand.GetAll();
+      List<Brand> testBrandList = new List<Brand> {testBrand2};
 
       //Assert
-      Assert.Equal(testClassList, resultClasses);
+      Assert.Equal(resultBrand, testBrandList);
     }
 
       [Fact]
         public void Dispose()
         {
-          Student.DeleteAll();
-          Class.DeleteAll();
+          Store.DeleteAll();
+          Brand.DeleteAll();
         }
       }
     }

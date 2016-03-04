@@ -82,79 +82,79 @@ namespace Shoes
       Assert.Equal(testStore, result);
     }
 
-//     [Fact]
-// public void Test_AddClass_AddsClassToStudent()
-// {
-//   //Arrange
-//   Store testStore = new Store("Adin Moon",new DateTime (2009,10,01));
-//   testStore.Save();
-//
-//   Class testClass = new Class("Seahorse Riding", "SEA2008");
-//   testClass.Save();
-//
-//   //Act
-//   testStudent.AddClass(testClass);
-//
-//   foreach (var course in Class.GetAll()) {
-//         Console.WriteLine(course.GetName());
-//   }
-//
-//   List<Class> result = testStudent.GetClasses();
-//   List<Class> testList = new List<Class>{testClass};
-//
-//   //Assert
-//   Assert.Equal(testList, result);
-// }
+    [Fact]
+public void Test_AddClass_AddsClassToStudent()
+{
+  //Arrange
+  Store testStore = new Store("Adin Moon",new DateTime (2009,10,01));
+  testStore.Save();
 
-  // [Fact]
-  // public void Test_GetCategories_ReturnsAllStudentCategories()
-  // {
-  //   //Arrange
-  //   Student testStudent = new Student("Zach Quinto",new DateTime (2009,10,01));
-  //   testStudent.Save();
-  //
-  //   Class testClass1 = new Class("William James", "Phil008");
-  //   testClass1.Save();
-  //
-  //   Class testClass2 = new Class("Zach Quinto", "Phil1009");
-  //   testClass2.Save();
-  //
-  //   //Act
-  //   testStudent.AddClass(testClass1);
-  //   List<Class> result = testStudent.GetClasses();
-  //   List<Class> testList = new List<Class> {testClass1};
-  //
-  //   //Assert
-  //   Assert.Equal(testList, result);
-  // }
+  Class testClass = new Class("Seahorse Riding", "SEA2008");
+  testClass.Save();
 
-  // public void Test_Delete_DeletesStudentAssociationsFromDatabase()
-  // {
-  //   //Arrange
-  //   Class testClass = new Class("Barrel Slinging", "Gears2001");
-  //   testClass.Save();
-  //
-  //   string testDescription = "David Phil";
-  //   DateTime testcompletion = new DateTime (2009,10,01);
-  //   Student testStudent = new Student(testDescription, testcompletion);
-  //   testStudent.Save();
-  //
-  //   //Act
-  //   testStudent.AddClass(testClass);
-  //   testStudent.Delete();
-  //
-  //   List<Student> resultClassStudents = testClass.GetStudents();
-  //   List<Student> testClassStudents = new List<Student> {};
-  //
-  //   //Assert
-  //   Assert.Equal(testClassStudents, resultClassStudents);
-  // }
+  //Act
+  testStudent.AddClass(testClass);
+
+  foreach (var course in Class.GetAll()) {
+        Console.WriteLine(course.GetName());
+  }
+
+  List<Class> result = testStudent.GetClasses();
+  List<Class> testList = new List<Class>{testClass};
+
+  //Assert
+  Assert.Equal(testList, result);
+}
+
+  [Fact]
+  public void Test_GetCategories_ReturnsAllStudentCategories()
+  {
+    //Arrange
+    Student testStudent = new Student("Zach Quinto",new DateTime (2009,10,01));
+    testStudent.Save();
+
+    Class testClass1 = new Class("William James", "Phil008");
+    testClass1.Save();
+
+    Class testClass2 = new Class("Zach Quinto", "Phil1009");
+    testClass2.Save();
+
+    //Act
+    testStudent.AddClass(testClass1);
+    List<Class> result = testStudent.GetClasses();
+    List<Class> testList = new List<Class> {testClass1};
+
+    //Assert
+    Assert.Equal(testList, result);
+  }
+
+  public void Test_Delete_DeletesStudentAssociationsFromDatabase()
+  {
+    //Arrange
+    Class testClass = new Class("Barrel Slinging", "Gears2001");
+    testClass.Save();
+
+    string testDescription = "David Phil";
+    DateTime testcompletion = new DateTime (2009,10,01);
+    Student testStudent = new Student(testDescription, testcompletion);
+    testStudent.Save();
+
+    //Act
+    testStudent.AddClass(testClass);
+    testStudent.Delete();
+
+    List<Student> resultClassStudents = testClass.GetStudents();
+    List<Student> testClassStudents = new List<Student> {};
+
+    //Assert
+    Assert.Equal(testClassStudents, resultClassStudents);
+  }
 
 
     public void Dispose()
     {
       Store.DeleteAll();
-      // Class.DeleteAll();
+      Brand.DeleteAll();
     }
   }
 }
