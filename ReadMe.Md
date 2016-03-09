@@ -35,7 +35,7 @@ E-mail: DE_Team@nsa.gov_
 
 ## SQL Table Set Up
 In SQLCMD:
-CREATE DATABASE Athens_Shoes;
+CREATE DATABASE shoes_stores;
 GO
 USE stores_brands;
 GO

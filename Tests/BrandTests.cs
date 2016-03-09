@@ -11,7 +11,7 @@ namespace Shoes
   {
     public BrandTest()
     {
-      DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=Athens_Shoes_Test;Integrated Security=SSPI;";
+      DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=shoe_stores_test;Integrated Security=SSPI;";
     }
 
     [Fact]
@@ -30,7 +30,7 @@ namespace Shoes
     }
 
 
-        [Fact]
+    [Fact]
     public void Test_Save_SavesBrandToDatabase()
     {
       //Arrange
@@ -44,8 +44,6 @@ namespace Shoes
       //Assert
       Assert.Equal(testList, result);
     }
-
-
     [Fact]
     public void Test_Save_AssignsIdToBrandObject()
     {
@@ -76,53 +74,53 @@ namespace Shoes
       Assert.Equal(testBrand, foundBrand);
     }
 
-        [Fact]
-        public void Test_AddStore_AddsaStoretoBrand()
-        {
-          //Arrange
-          Brand testBrand = new Brand("Orion");
-          testBrand.Save();
+    [Fact]
+    public void Test_AddStore_AddsaStoretoBrand()
+    {
+      //Arrange
+      Brand testBrand = new Brand("Orion");
+      testBrand.Save();
 
-          Store testStore = new Store("Talos Boots");
-          testStore.Save();
+      Store testStore = new Store("Talos Boots");
+      testStore.Save();
 
-          Store testStore2 = new Store("Geryon Sandals");
-          testStore2.Save();
+      Store testStore2 = new Store("Geryon Sandals");
+      testStore2.Save();
 
-          //Act
-          testBrand.AddStore(testStore);
-          testBrand.AddStore(testStore2);;
+      //Act
+      testBrand.AddStore(testStore);
+      testBrand.AddStore(testStore2);;
 
-          List<Store> result = testBrand.GetStores();
-          List<Store> testList = new List<Store>{testStore, testStore2};
+      List<Store> result = testBrand.GetStores();
+      List<Store> testList = new List<Store>{testStore, testStore2};
 
-          //Assert
-          Assert.Equal(testList, result);
-        }
+      //Assert
+      Assert.Equal(testList, result);
+    }
+    [Fact]
+    public void Test_GetStores_ReturnsAllBrandStores()
+    {
+      //Arrange
+      Brand testBrand = new Brand("Agon");
+      testBrand.Save();
 
-        [Fact]
-        public void Test_GetStores_ReturnsAllBrandStores()
-        {
-          //Arrange
-          Brand testBrand = new Brand("Agon");
-          testBrand.Save();
+      Store testStore1 = new Store("Alke Sleek Slippers");
+      testStore1.Save();
 
-          Store testStore1 = new Store("Alke Sleek Slippers");
-          testStore1.Save();
+      // Student testStudent2 = new Student("Sean Peerenboom", new DateTime (2009,10,01));
+      // testStudent2.Save();
 
-          // Student testStudent2 = new Student("Sean Peerenboom", new DateTime (2009,10,01));
-          // testStudent2.Save();
+      //Act
+      testBrand.AddStore(testStore1);
+      List<Store> savedStore = testBrand.GetStores();
+      List<Store> testList = new List<Store> {testStore1};
 
-          //Act
-          testBrand.AddStore(testStore1);
-          List<Store> savedStore = testBrand.GetStores();
-          List<Store> testList = new List<Store> {testStore1};
-
-          //Assert
-          Assert.Equal(testList, savedStore);
-        }
-      public void Test_Getbrands_ReturnsAllStorebrands()
-      {
+      //Assert
+      Assert.Equal(testList, savedStore);
+    }
+    [Fact]
+    public void Test_Getbrands_ReturnsAllStorebrands()
+    {
       //Arrange
       Store testStore = new Store("Ate's Vanity");
       testStore.Save();
@@ -142,39 +140,39 @@ namespace Shoes
       Assert.Equal(testList, result);
     }
     [Fact]
-       public void Test_Updatebrand_UpdatingaBrandName()
-       {
-         Brand newBrand = new Brand("Athena");
-         newBrand.Save();
-         string testBrand = "Key";
+     public void Test_Updatebrand_UpdatingaBrandName()
+     {
+       Brand newBrand = new Brand("Athena");
+       newBrand.Save();
+       string testBrand = "Key";
 
-         newBrand.UpdateBrand(testBrand);
-         string result = newBrand.GetName();
+       newBrand.UpdateBrand(testBrand);
+       string result = newBrand.GetName();
 
-         Assert.Equal(testBrand, result);
-       }
+       Assert.Equal(testBrand, result);
+     }
 
     [Fact]
-        public void Test_Delete_DeletesbrandAssociationsFromDatabase()
-        {
-          //Arrange
-          Store testStore = new Store("Eirene Birkenstocks");
-          testStore.Save();
+    public void Test_Delete_DeletesbrandAssociationsFromDatabase()
+    {
+      //Arrange
+      Store testStore = new Store("Eirene Birkenstocks");
+      testStore.Save();
 
-          string testName = "Eirene Birkenstocks";
-          Brand testBrand = new Brand(testName);
-          testBrand.Save();
+      string testName = "Eirene Birkenstocks";
+      Brand testBrand = new Brand(testName);
+      testBrand.Save();
 
-          //Act
-          testBrand.AddStore(testStore);
-          testBrand.DeleteBrand();
+      //Act
+      testBrand.AddStore(testStore);
+      testBrand.DeleteBrand();
 
-          List<Brand> resultstorebrand = testStore.GetBrands();
-          List<Brand> teststoreBrand = new List<Brand> {};
+      List<Brand> resultstorebrand = testStore.GetBrands();
+      List<Brand> teststoreBrand = new List<Brand> {};
 
-          //Assert
-          Assert.Equal(teststoreBrand, resultstorebrand);
-        }
+      //Assert
+      Assert.Equal(teststoreBrand, resultstorebrand);
+    }
     [Fact]
     public void Test_Delete_DeletesbrandFromDatabase()
     {
@@ -196,11 +194,11 @@ namespace Shoes
       Assert.Equal(resultBrand, testBrandList);
     }
 
-      [Fact]
-        public void Dispose()
-        {
-          Store.DeleteAll();
-          Brand.DeleteAll();
-        }
-      }
+    [Fact]
+    public void Dispose()
+    {
+      Store.DeleteAll();
+      Brand.DeleteAll();
     }
+  }
+}

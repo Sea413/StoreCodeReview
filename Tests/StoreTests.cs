@@ -10,7 +10,7 @@ namespace Shoes
   {
     public StoreTest()
     {
-      DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=Athens_Shoes_Test;Integrated Security=SSPI;";
+      DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=shoe_stores_test;Integrated Security=SSPI;";
     }
 
     [Fact]
@@ -49,8 +49,6 @@ namespace Shoes
       Assert.Equal(testList, result);
     }
 
-
-
     [Fact]
     public void Test_SaveAssignsIdToObject()
     {
@@ -83,51 +81,51 @@ namespace Shoes
     }
 
     [Fact]
-public void Test_AddBrand_AddsBrandtoStore()
-{
-  //Arrange
-  Store testStore = new Store("Soter's Clogs");
-  testStore.Save();
+    public void Test_AddBrand_AddsBrandtoStore()
+    {
+      //Arrange
+      Store testStore = new Store("Soter's Clogs");
+      testStore.Save();
 
-  Brand testBrand = new Brand("Polemos");
-  testBrand.Save();
+      Brand testBrand = new Brand("Polemos");
+      testBrand.Save();
 
-  //Act
-  testStore.AddBrand(testBrand);
+      //Act
+      testStore.AddBrand(testBrand);
 
-  // foreach (var store in Brand.GetAll()) {
-  //       Console.WriteLine(course.GetName());
-  // }
+      // foreach (var store in Brand.GetAll()) {
+      //       Console.WriteLine(course.GetName());
+      // }
 
-  List<Brand> result = testStore.GetBrands();
-  List<Brand> testList = new List<Brand>{testBrand};
+      List<Brand> result = testStore.GetBrands();
+      List<Brand> testList = new List<Brand>{testBrand};
 
-  //Assert
-  Assert.Equal(testList, result);
-}
+      //Assert
+      Assert.Equal(testList, result);
+    }
 
-  [Fact]
-  public void Test_Getbrands_ReturnsAllStorebrands()
-  {
-    //Arrange
-    Store testStore = new Store("Charon Boating Shoes");
-    testStore.Save();
+    [Fact]
+    public void Test_Getbrands_ReturnsAllStorebrands()
+    {
+      //Arrange
+      Store testStore = new Store("Charon Boating Shoes");
+      testStore.Save();
 
-    Brand testBrand1 = new Brand("Aiakos");
-    testBrand1.Save();
+      Brand testBrand1 = new Brand("Aiakos");
+      testBrand1.Save();
 
-    Brand testBrand2 = new Brand("Minos");
-    testBrand2.Save();
+      Brand testBrand2 = new Brand("Minos");
+      testBrand2.Save();
 
-    //Act
-    testStore.AddBrand(testBrand1);
-    List<Brand> result = testStore.GetBrands();
-    List<Brand> testList = new List<Brand> {testBrand1};
+      //Act
+      testStore.AddBrand(testBrand1);
+      List<Brand> result = testStore.GetBrands();
+      List<Brand> testList = new List<Brand> {testBrand1};
 
-    //Assert
-    Assert.Equal(testList, result);
-  }
-  [Fact]
+      //Assert
+      Assert.Equal(testList, result);
+    }
+    [Fact]
      public void Test_Update_UpdatingaStoreName()
      {
        Store newStore = new Store("Loki");
@@ -139,29 +137,27 @@ public void Test_AddBrand_AddsBrandtoStore()
 
        Assert.Equal(testStore, result);
      }
+    [Fact]
+    public void Test_Delete_DeletesStoreAssociationsFromDatabase()
+    {
+      //Arrange
+      Brand testBrand = new Brand("Ceto");
+      testBrand.Save();
 
-  public void Test_Delete_DeletesStoreAssociationsFromDatabase()
-  {
-    //Arrange
-    Brand testBrand = new Brand("Ceto");
-    testBrand.Save();
+      string testName = "Aurai Breeze Shoes";
+      Store testStore = new Store(testName);
+      testStore.Save();
 
-    string testName = "Aurai Breeze Shoes";
-    Store testStore = new Store(testName);
-    testStore.Save();
+      //Act
+      testStore.AddBrand(testBrand);
+      testStore.DeleteStore();
 
-    //Act
-    testStore.AddBrand(testBrand);
-    testStore.DeleteStore();
+      List<Store> resultBrandStore = testBrand.GetStores();
+      List<Store> testbrandStore = new List<Store> {};
 
-    List<Store> resultBrandStore = testBrand.GetStores();
-    List<Store> testbrandStore = new List<Store> {};
-
-    //Assert
-    Assert.Equal(resultBrandStore, testbrandStore);
-  }
-
-
+      //Assert
+      Assert.Equal(resultBrandStore, testbrandStore);
+    }
     public void Dispose()
     {
       Store.DeleteAll();
