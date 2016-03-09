@@ -3,11 +3,11 @@
 <ul>
 @{ if (Model.Count != null) {
   @foreach (var brands in Model) {
-     <li><a href="/brand/@brands.GetId()">@brands.GetName()</a> <a href="/brands/edit/@brands.GetId()"> Edit Brand Info</a></li>
+     <li><a href="/brands/@brands.GetId()">@brands.GetName()</a> <a href="/brands/edit/@brands.GetId()"> Edit Brand Info</a></li>
     }
   }
 }
 </ul>
 
 <a href="/"> Go Back</a>
-<a href="/brands/ClearAll">Delete All Brands!</a>
+<a href="/brands/clearAll">Delete All Brands!</a>

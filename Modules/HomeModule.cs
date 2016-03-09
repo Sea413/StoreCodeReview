@@ -22,16 +22,16 @@ namespace Shoes
         List<Brand> AllBrands = Brand.GetAll();
         return View["brands.cshtml", AllBrands];
       };
-      Get["/stores/ClearAll"] = _ => {
+      Get["/stores/clearAll"] = _ => {
         Store.DeleteAll();
         return View ["index.cshtml"];
       };
-      Get["/brands/ClearAll"] = _ => {
+      Get["/brands/clearAll"] = _ => {
         Brand.DeleteAll();
         return View ["index.cshtml"];
       };
 
-      Get["/brand/{id}"] = parameters => {
+      Get["/brands/{id}"] = parameters => {
         Dictionary<string, object> model = new Dictionary<string, object>();
         Brand Selectedbrand = Brand.Find(parameters.id);
         List<Store> allStores = Store.GetAll();
@@ -42,7 +42,7 @@ namespace Shoes
         return View["brand.cshtml", model];
       };
 
-      Get["/store/{id}"] = parameters => {
+      Get["/stores/{id}"] = parameters => {
         Dictionary<string, object> model = new Dictionary<string, object>();
         Store SelectedStore = Store.Find(parameters.id);
         List<Brand> allbrands = Brand.GetAll();
@@ -53,14 +53,14 @@ namespace Shoes
         return View["store.cshtml", model];
       };
 //
-      Post["brand/add_store"] = _ => {
+      Post["brands/add_store"] = _ => {
         Brand selectedBrand = Brand.Find(Request.Form["brand-id"]);
         Store store = Store.Find(Request.Form["store-id"]);
         selectedBrand.AddStore(store);
         List<Brand> Allbrands = Brand.GetAll();
         return View["brands.cshtml", Allbrands];
-    };
-      Post["store/add_brand"] = _ => {
+      };
+      Post["stores/add_brand"] = _ => {
         Store selectedStore = Store.Find(Request.Form["store-id"]);
         Brand brand = Brand.Find(Request.Form["brand-id"]);
         selectedStore.AddBrand(brand);
@@ -68,14 +68,14 @@ namespace Shoes
         return View["stores.cshtml", AllStores];
       };
 
-      Post["/stores"] = _ => {
+      Post["/stores/new"] = _ => {
         Store newStore = new Store(Request.Form["store-name"]);
         newStore.Save();
         List<Store> AllStores = Store.GetAll();
         return View["stores.cshtml", AllStores];
       };
 //
-      Post["/brands"] = _ => {
+      Post["/brands/new"] = _ => {
         Brand newBrand = new Brand(Request.Form["brand-name"]);
         newBrand.Save();
         List<Brand> Allbrands = Brand.GetAll();
@@ -117,7 +117,7 @@ namespace Shoes
         Brand SelectedBrand = Brand.Find(parameters.id);
         return View["index.cshtml"];
       };
-      
+
       Delete["/brands/delete/{id}"] = parameters => {
         Brand DeletedBrand = Brand.Find(parameters.id);
         DeletedBrand.DeleteBrand();

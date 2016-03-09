@@ -175,7 +175,7 @@ namespace Shoes
 
       List<Store> stores = new List<Store>{};
 
-      SqlCommand cmd = new SqlCommand("SELECT stores.* FROM stores JOIN brands_stores ON (stores.id = brands_stores.store_id) JOIN brands ON (brand.id = brands_stores.brand_id) WHERE store.id = @storeId");
+      SqlCommand cmd = new SqlCommand("SELECT stores.* FROM brands JOIN brands_stores ON (brands.id = brands_stores.brand_id) JOIN stores ON (stores.id = brands_stores.store_id) WHERE brands.id = @storeId", conn);
 
       SqlParameter BrandIdParameter = new SqlParameter();
       BrandIdParameter.ParameterName = "@storeId";
